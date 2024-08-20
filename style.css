@@ -10,7 +10,7 @@ html, body {
 .container {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     border: 1px solid black;
     background-color: black;
@@ -20,9 +20,27 @@ html, body {
 }
 
 #display {
+    font-size: 75px;
     background-color: lightgray;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     width: 95%;
     height: 15%;
+}
+
+button {
+    font-size: 25px;
+    border-radius: 5px;
+    width: 100px;
+    height: 80px;
+    margin: 2px;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
 .number {
