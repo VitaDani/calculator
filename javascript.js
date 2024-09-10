@@ -17,10 +17,10 @@ function divide(a, b) {
 }
 
 /* Create the variables that will be used for mathematical operations and display*/
+const display = document.querySelector("#display");
 let firstNumber;
 let secondNumber;
 let operation;
-let displayValue = "0";
 
 /* Create the function that takes the variables and performs the operation */
 function operate(operation, firstNumber, secondNumber) {
@@ -37,8 +37,7 @@ function operate(operation, firstNumber, secondNumber) {
 
 /* Create the functions to update the display once buttons are clicked */
 function updateDisplay(displayValue) {
-    const display = document.querySelector("#display");
-    display.textContent = displayValue;
+    display.textContent += displayValue;
 }
 
 const buttons = document.querySelector("#buttons");
@@ -76,5 +75,19 @@ buttons.addEventListener('click', (event) => {
         case 'nine':
             updateDisplay(9);
             break;
+        case 'add':
+            operateButtonHit();
+            break;
     }
 });
+
+/* Create the functions to perform the mathematical operation with the operand
+buttons */
+function operateButtonHit() {
+    firstNumber = +display.textContent;
+    display.textContent = '';
+}
+
+function equalButtonHit() {
+    secondNumber = +display.textContent;
+}
