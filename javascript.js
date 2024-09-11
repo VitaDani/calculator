@@ -26,7 +26,9 @@ let operation;
 /* Create the function that takes the variables and performs the operation */
 function operate(operation, firstNumber, secondNumber) {
     if(operation === "/") {
-        return quotient(firstNumber, secondNumber);
+        if(secondNumber === 0) {
+            return "Infintely bad!!!";
+        } else return quotient(firstNumber, secondNumber);
     } else if(operation === "*") {
         return product(firstNumber, secondNumber);
     } else if(operation === "-") {
@@ -41,11 +43,14 @@ function updateDisplay(displayValue) {
     if(display.textContent === '0') {
         display.textContent = '';
     }
+    if(display.textContent.length >= 12) {
+        display.textContent = display.textContent.slice(1);
+    }
     display.textContent += displayValue;
 }
 
 const buttons = document.querySelector("#buttons");
-buttons.addEventListener('mousedown', (event) => {
+buttons.addEventListener('click', (event) => {
     let target = event.target;
 
     switch(target.id) {
@@ -70,6 +75,25 @@ buttons.addEventListener('mousedown', (event) => {
             break;
         case 'equals':
             equalButtonHit();
+            break;
+        case 'decimal':
+            if(!display.textContent.includes('.')) {
+                updateDisplay(target.innerHTML);
+            }
+            break;
+        case 'clear':
+            display.textContent = '0';
+            firstNumber = 0;
+            secondNumber = 0;
+            break;
+        case 'sign':
+            display.textContent *= -1;
+            break;
+        case 'percent':
+            display.textContent /= 100;
+            break;
+        case 'delete':
+            display.textContent = display.textContent.slice(0 , -1);
             break;
     }
 });
